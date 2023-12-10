@@ -1,5 +1,4 @@
-// Déclaration d'un tableau d'objets
-  let listeFilms = [
+ let listeFilms = [
     { titre: "Earwig and the Witch", realisateur: "Gorō Miyazaki" },
     { titre: "The Red Turtle", realisateur: "Michaël Dudok de Wit" },
     { titre: "When Marnie Was There", realisateur: "Hiromasa Yonebayashi" },
@@ -24,35 +23,46 @@
     { titre: "Castle in the Sky", realisateur: "Hayao Miyazaki" }
   ];
   
-  console.log(listeFilms);
+  //console.log(listeFilms);
   
-  
-  // 
-  function ajouterElementALaListe(element, listeId) {
-    let liste = document.getElementById(listeId);// "cible" ou on va trv
-    // prend un elem avc son id 
+
+
+
+
+
+  function ajtLi(element, listeId) {
+    let liste = document.getElementById(listeId);
     let li = document.createElement("li");
-    // creat fils , qd use après 
+    let chg = document.createElement("span");
+    chg.className = "redd"; // Ajoute la classe spécifique
+    li.appendChild(chg);
     li.appendChild(document.createTextNode(element));
-    // ce fils aura comme caract element 
+    
+
+    //  // Ajoute la classe text-rouge à l'élément li si l'id selectioné et filmsBy
+     if (listeId === 'filmsBy') {
+    li.classList.add('text-rouge');
+        }
     liste.appendChild(li);
-    // et ce fils on le donne à la "cible" 
   }
   
-      ///=====***********************************************
+  // if ( === realisateur: "Hayao Miyazaki) {
+  //   chg.classList.add('nwar-text');
+  // }
 
-////////////////
+
+//////////////// f aj ul
 function aj(element, listeId) {
   let liste = document.getElementById(listeId);// "cible" ou on va trv
   // prend un elem avc son id 
-  let li = document.createElement("ul");
+  let ul = document.createElement("ul");
   // creat fils , qd use après 
   let pointNoir = document.createElement("span");
   pointNoir.className = `point-noir `; // Ajoute la classe spécifique
-  li.appendChild(pointNoir);
-  li.appendChild(document.createTextNode(element));
+  ul.appendChild(pointNoir);
+  ul.appendChild(document.createTextNode(element));
   // ce fils aura comme caract element 
-  liste.appendChild(li);
+  liste.appendChild(ul);
   // et ce fils on le donne à la "cible" 
 }
 
@@ -64,36 +74,30 @@ function aj(element, listeId) {
     let filmText = film.titre + " : " + film.realisateur;
   
     // Ajout à la première liste "filmsBy"
-    ajouterElementALaListe(filmText, "filmsBy");
+    ajtLi(filmText, "filmsBy");
   
-    
-    // Ajout à la troisième liste "directorsfilmsList"
-    //ajouterElementALaListe(film.realisateur, "directorsfilmsList");
-     //aj(film.titre, "directorsfilmsList");
-
-    
   }
   
-  // Exemple de fonction pour afficher les réalisateurs
-  function afficherRealisateurs() {
-    let realisateurs = listeFilms.map(function(film) {
+  // afficher les réalisateurs
+  function afiReal() {
+    let real = listeFilms.map(function(film) {
       return film.realisateur;// cet part va renvoyer only realisateur 
     });
   
     // Supprime oublons et met dans un tab 
-    let realisateursUniques = [...new Set(realisateurs)];
+    let realUniques = [...new Set(real)];
   
-    // pr chaq directar ( ietr ) , on va use notre f ajouterElementALaListe
+    // pr chaq directar ( ietr ) , on va use notre f ajtLi
     // pr le mettre dans l'id director 
-    realisateursUniques.forEach(function(realUniq) {
-      ajouterElementALaListe(realUniq, "directors");
-      ajouterElementALaListe(realUniq, "directorsfilmsList");
+    realUniques.forEach(function(realUniq) {
+      ajtLi(realUniq, "directors");
+      ajtLi(realUniq, "directorsfilmsList");
 
 
-      ///mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-      // Ajouter les films du réalisateur à sa sous-liste
+      // Ajt films réalisateur ss-liste
     let filmsDuRealisateur = listeFilms.filter(function (film) {
-      return film.realisateur === realUniq;// ici comme on est dans realisateursUniques , on va traité pr chaque realisteurs 
+      return film.realisateur === realUniq;// ici comme on est dans realUniques , on va traité pr chaque realisteurs 
+      
       //= valeur de la variable realUniq 
       // dc on va prendre tt les real qui sont true 
       // ex   img   realUniq = Hiromasa Yonebayashi    resultat de   filmsDuRealisateur est : 
@@ -131,6 +135,6 @@ function aj(element, listeId) {
     });////////////////real uniq
   }
   
-  afficherRealisateurs();
+  afiReal();
   
   
